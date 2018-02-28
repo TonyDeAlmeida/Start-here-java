@@ -16,7 +16,7 @@ The project is a maven project. You are free to use any IDE of your choice to bu
 
 #Using the samples
 
-1. Firts run the MqttDeviceModePublishFirmware sample
+1. First run the MqttDeviceModePublishFirmware sample
 2 in the Firmwares list in Live Objects, add de new version V1.1 to the sampleFirmware. Add a binary file of your choice (may be a jped picture for example)
 3. In Live Objects change the device1 firmware version to V1.1 
 2. Set The API_KEY and run the sample
