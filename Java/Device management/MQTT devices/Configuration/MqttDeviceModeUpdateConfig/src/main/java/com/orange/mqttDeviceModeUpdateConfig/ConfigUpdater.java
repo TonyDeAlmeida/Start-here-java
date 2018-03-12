@@ -39,7 +39,7 @@ public class ConfigUpdater {
 
 			MqttConnectOptions connOpts = new MqttConnectOptions();
 
-			connOpts.setUserName("USERNAME"); 
+			connOpts.setUserName(USERNAME); 
 
 			connOpts.setPassword(API_KEY.toCharArray());
 			connOpts.setCleanSession(true);
