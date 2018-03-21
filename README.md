@@ -1,6 +1,7 @@
 <p>This document describes how to use the main features of Live Objects to develop your IoT application.</p>
 
 
+
 <h1 id="prerequisite">Getting Started Guide</h1>
 
 <p>This document describes how to use the main features of Live Objects (LO) to develop your IoT application. You will find all the needed information about the following points :</p>
@@ -146,7 +147,8 @@ They are all based on the same structure, and use the paho-mqtt java library.</p
 <p>Use static constants for all Live Objects parameters. This will certainly not what you will prefer to do in your real application code, but centralizing them in the samples gives you a complete overview of the different parameters.</p><p>
 A first group of parameters defines the connection to Live Objets</p>
 
-<pre><code type="java">// Connection parameters
+<pre><code type="java">
+// Connection parameters
 public static String SERVER = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
 public static String API_KEY = "<<YOUR API KEY>>";                             // <-- REPLACE by YOUR API_KEY! 
 public static String USERNAME="json+device";                                // The option to publish in device mode
@@ -213,14 +215,12 @@ public static int qos = 1;              // set the qos
 
 <p><u>Create your client</u></p>
 
-<pre><code>
-MqttClient sampleClient = new MqttClient(<b>SERVER, CLIENT_ID</b>, new MemoryPersistence());
+<pre><code>MqttClient sampleClient = new MqttClient(<b>SERVER, CLIENT_ID</b>, new MemoryPersistence());
 </code></pre>
 
 <p><u>Create and fill options</u></p>
 
-<pre><code>
-qttConnectOptions connOpts = new MqttConnectOptions();
+<pre><code>qttConnectOptions connOpts = new MqttConnectOptions();
 connOpts.setCleanSession(true);
 connOpts.setPassword(<b>API_KEY</b>.toCharArray());    
 connOpts.setUserName(<b>USERNAME</b>);  // use Device Mode
@@ -228,29 +228,25 @@ connOpts.setUserName(<b>USERNAME</b>);  // use Device Mode
 
 <p><u>Connect to Live Objects</u></p>
 
-<pre><code>
-sampleClient.connect(connOpts);
+<pre><code>sampleClient.connect(connOpts);
 </code></pre>
 
 <p><u>Create your message</u></p>
 
-<pre><code>
-LoData loData = new LoData();
+<pre><code>LoData loData = new LoData();
 ... // fill members in the JSON structure (see reference guide for the JSON to use according to the publish mode and the topic)
 </code></pre>
 
 <p><u>Send your messages</u></p>
 
-<pre><code>
-MqttMessage message = new MqttMessage(msg.getBytes());
+<pre><code>MqttMessage message = new MqttMessage(msg.getBytes());
 message.setQos(qos);
 sampleClient.publish(<b>TOPIC</b>, message);
 </code></pre>
 
 <p><u>Disconnect</u></p>
 
-<pre><code>
-sampleClient.disconnect();
+<pre><code>sampleClient.disconnect();
 </code></pre>
 
 
@@ -262,20 +258,17 @@ sampleClient.disconnect();
 <h4 id="consuming-data-mqtt">3.3.1 With MQTT</h4>
 <p><u>Create your client</u></p>
 
-<pre><code>
-MqttClient sampleCLient = new MqttClient(<b>SERVER</b>, <b>CLIENT_ID</b>, new MemoryPersistence());
+<pre><code>MqttClient sampleCLient = new MqttClient(<b>SERVER</b>, <b>CLIENT_ID</b>, new MemoryPersistence());
 </code></pre>
 
 <p><u>Register the callback class that will handle subscription and message processing</u></p>
 
-<pre><code>
-sampleClient.setCallback(new SimpleMqttCallback(sampleClient); // SEE BELOW !!
+<pre><code>sampleClient.setCallback(new SimpleMqttCallback(sampleClient); // SEE BELOW !!
 </code></pre>
 
 <p><u>Create and fill options</u></p>
 
-<pre><code>
-MqttConnectOptions connOpts = new MqttConnectOptions();
+<pre><code>MqttConnectOptions connOpts = new MqttConnectOptions();
 connOpts.setCleanSession(true);
 connOpts.setPassword(<b>API_KEY</b>.toCharArray());    
 connOpts.setUserName(<b>USERNAME</b>);  // use Bridge mode here to consume from fifo or router !
@@ -284,30 +277,26 @@ connOpts.setAutomaticReconnect(true);
 
 <p><u>Connect to Live Objects</u></p>
 
-<pre><code>
-sampleClient.connect(connOpts);
+<pre><code>sampleClient.connect(connOpts);
 </code></pre>
 
 <p><u>Wait for messages processed by your SimpleMqttCallback object</u></p>
 
-<pre><code>
-synchronized (sampleClient) {
+<pre><code>synchronized (sampleClient) {
 sampleClient.wait();
 }
 </code></pre>
 
 <p><u>Disconnect</u></p>
 
-<pre><code>
-sampleClient.disconnect();
+<pre><code>sampleClient.disconnect();
 </code></pre>
 
 <p><u>Now, have a look at the the callback class :</u></p>
 <p>This class should implement the MqttCallbackExtended interface :</p>
 <p>First create the constructor :</p>
 
-<pre><code>
-private MqttClient mqttClient;
+<pre><code>private MqttClient mqttClient;
 public SimpleMqttCallback(MqttClient mqttClient) {
     this.mqttClient = mqttClient;
 }
@@ -316,14 +305,12 @@ public SimpleMqttCallback(MqttClient mqttClient) {
 <p>You need the reference to your mqqClient previously created to subscribe to the right Topic</p>
 <p>Then fill the different methods you implement</p>
 
-<pre><code>
-public void connectComplete(boolean reconnect, String serverURI) {
+<pre><code>public void connectComplete(boolean reconnect, String serverURI) {
 </code></pre>
 
 <p>Once your MqttClient is connected, you will subscribe here : </p>
 
-<pre><code>
-try {
+<pre><code>try {
 System.out.printf("Consuming from topic : ", <b>TOPIC</b>);
     mqttClient.subscribe(<b>TOPIC</b>);
     System.out.println("... subscribed.");                              
@@ -332,8 +319,7 @@ System.out.printf("Consuming from topic : ", <b>TOPIC</b>);
 }   
 </code></pre>
 
-<pre><code>
-public void messageArrived(String topic, MqttMessage message) throws Exception {
+<pre><code>public void messageArrived(String topic, MqttMessage message) throws Exception {
 All messages will be processed, (here simple print on stdout, but of course, you can process the messages according to your needs !
 System.out.println("Message received from Topic  " + TOPIC + " : " + mqttMessage);
 }
@@ -343,8 +329,7 @@ System.out.println("Message received from Topic  " + TOPIC + " : " + mqttMessage
 The 2 last methods can be left empty. Use them according your needs (see Mqtt library documentation)
 </p>
 
-<pre><code>
-public void connectionLost(Throwable cause) {
+<pre><code>public void connectionLost(Throwable cause) {
 }
 public void deliveryComplete(IMqttDeliveryToken token) {
 }
