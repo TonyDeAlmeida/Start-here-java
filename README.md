@@ -70,7 +70,7 @@ A Topic is somehow any of this kind of information.
 <p>In Live Objects, you have predefined parts of the addresses that are fixed, the other are of your choice.</p>
 
 
-<h3 id="device-mode-vs-bridge-mode">1.3	DEVICE MODE VS BRIDGE MODE</h3>
+<h3 id="device-mode-vs-bridge-mode">1.3 DEVICE MODE VS BRIDGE MODE</h3>
 
 You can publish using 2 modes:
 <table>
@@ -93,27 +93,27 @@ and dev/ for the “device mode”.</p>
 <tr>
     <td>Publish mode</td>
     <td>Type</td>
-	<td>Address</td>
+    <td>Address</td>
     <td>Persisted in data zone</td>
 </tr>
 <tr>
     <td>Device Mode</td>
     <td>dev/</td>
-	<td>fixed : data, cfg, ...</td>
+    <td>fixed : data, cfg, ...</td>
     <td>yes for dev/data<br>
-	yes for dev/data/xxx
-	</td>
+    yes for dev/data/xxx
+    </td>
 </tr>
 <tr>
     <td>Bridge mode (pubsub)</td>
     <td>pubsub/</td>
-	<td></td>
+    <td></td>
     <td>no</td>
 </tr>
 <tr>
     <td>Bridge mode (fifo)</td>
     <td>fifo/</td>
-	<td>at your choice</td>
+    <td>at your choice</td>
     <td>no</td>
 </tr>
 <tr>
@@ -125,7 +125,7 @@ and dev/ for the “device mode”.</p>
 <tr>
     <td>Bridge mode (routeur)</td>
     <td>routeur/</td>
-	<td>~event/v1/data/new<br>
+    <td>~event/v1/data/new<br>
 ~event/v1/data/new/xxx</td>
     <td>yes</td>
 </tr>
@@ -161,11 +161,11 @@ public static String CLIENT_ID="urn:lo:nsid:samples:device1";               // i
 
 <p>The second group of parameters defines the way your message will be published to Live Objects:</p>
 
-<code><pre>
+<pre><code>
 //Publication parameters
 public static String TOPIC="dev/data";  // topic to publish to
 public static int qos = 1;              // set the qos
-</pre></code>
+</code></pre>
 
 <h4 id="json-structure">2.1.2 JSON STRUCTURE</h4>
 
@@ -215,45 +215,45 @@ public static int qos = 1;              // set the qos
 
 <p><u>Create your client</u></p>
 
-<code><pre>
+<pre><code>
 MqttClient sampleClient = new MqttClient(<b>SERVER, CLIENT_ID</b>, new MemoryPersistence());
-</pre></code>
+</code></pre>
 
 <p><u>Create and fill options</u></p>
 
-<code><pre>
+<pre><code>
 qttConnectOptions connOpts = new MqttConnectOptions();
 connOpts.setCleanSession(true);
 connOpts.setPassword(<b>API_KEY</b>.toCharArray());    
 connOpts.setUserName(<b>USERNAME</b>);  // use Device Mode
-</pre></code>
+</code></pre>
 
 <p><u>Connect to Live Objects</u></p>
 
-<code><pre>
+<pre><code>
 sampleClient.connect(connOpts);
-</pre></code>
+</code></pre>
 
 <p><u>Create your message</u></p>
 
-<code><pre>
+<pre><code>
 LoData loData = new LoData();
 ... // fill members in the JSON structure (see reference guide for the JSON to use according to the publish mode and the topic)
-</pre></code>
+</code></pre>
 
 <p><u>Send your messages</u></p>
 
-<code><pre>
+<pre><code>
 MqttMessage message = new MqttMessage(msg.getBytes());
 message.setQos(qos);
 sampleClient.publish(<b>TOPIC</b>, message);
-</pre></code>
+</code></pre>
 
 <p><u>Disconnect</u></p>
 
-<code><pre>
+<pre><code>
 sampleClient.disconnect();
-</pre></code>
+</code></pre>
 
 
 <h3 id="consuming-data">3.3 CONSUMING DATA FROM LIVE OBJECTS</h3>
@@ -264,67 +264,67 @@ sampleClient.disconnect();
 <h4 id="consuming-data-mqtt">3.3.1 With MQTT</h4>
 <p><u>Create your client</u></p>
 
-<code><pre>
+<pre><code>
 MqttClient sampleCLient = new MqttClient(<b>SERVER</b>, <b>CLIENT_ID</b>, new MemoryPersistence());
-</pre></code>
+</code></pre>
 
 <p><u>Register the callback class that will handle subscription and message processing</u></p>
 
-<code><pre>
+<pre><code>
 sampleClient.setCallback(new SimpleMqttCallback(sampleClient); // SEE BELOW !!
-</pre></code>
+</code></pre>
 
 <p><u>Create and fill options</u></p>
 
-<code><pre>
+<pre><code>
 MqttConnectOptions connOpts = new MqttConnectOptions();
 connOpts.setCleanSession(true);
 connOpts.setPassword(<b>API_KEY</b>.toCharArray());    
 connOpts.setUserName(<b>USERNAME</b>);  // use Bridge mode here to consume from fifo or router !
 connOpts.setAutomaticReconnect(true);
-</pre></code>
+</code></pre>
 
 <p><u>Connect to Live Objects</u></p>
 
-<code><pre>
+<pre><code>
 sampleClient.connect(connOpts);
-</pre></code>
+</code></pre>
 
 <p><u>Wait for messages processed by your SimpleMqttCallback object</u></p>
 
-<code><pre>
+<pre><code>
 synchronized (sampleClient) {
 sampleClient.wait();
 }
-</pre></code>
+</code></pre>
 
 <p><u>Disconnect</u></p>
 
-<code><pre>
+<pre><code>
 sampleClient.disconnect();
-</pre></code>
+</code></pre>
 
 <p><u>Now, have a look at the the callback class :</u></p>
 <p>This class should implement the MqttCallbackExtended interface :</p>
 <p>First create the constructor :</p>
 
-<code><pre>
+<pre><code>
 private MqttClient mqttClient;
 public SimpleMqttCallback(MqttClient mqttClient) {
     this.mqttClient = mqttClient;
 }
-</pre></code>
+</code></pre>
 
 <p>You need the reference to your mqqClient previously created to subscribe to the right Topic</p>
 <p>Then fill the different methods you implement</p>
 
-<code><pre>
+<pre><code>
 public void connectComplete(boolean reconnect, String serverURI) {
-</pre></code>
+</code></pre>
 
 <p>Once your MqttClient is connected, you will subscribe here : </p>
 
-<code><pre>
+<pre><code>
 try {
 System.out.printf("Consuming from topic : ", <b>TOPIC</b>);
     mqttClient.subscribe(<b>TOPIC</b>);
@@ -332,25 +332,25 @@ System.out.printf("Consuming from topic : ", <b>TOPIC</b>);
 } catch (MqttException e) {
     System.out.println("Error during subscription");
 }   
-</pre></code>
+</code></pre>
 
-<code><pre>
+<pre><code>
 public void messageArrived(String topic, MqttMessage message) throws Exception {
 All messages will be processed, (here simple print on stdout, but of course, you can process the messages according to your needs !
 System.out.println("Message received from Topic  " + TOPIC + " : " + mqttMessage);
 }
-</pre></code>
+</code></pre>
 
 <p>
 The 2 last methods can be left empty. Use them according your needs (see Mqtt library documentation)
 </p>
 
-<code><pre>
+<pre><code>
 public void connectionLost(Throwable cause) {
 }
 public void deliveryComplete(IMqttDeliveryToken token) {
 }
-</pre></code>
+</code></pre>
 
 
 <h4 id="consuming-data-lora">3.3.2 With LoRa</h4>
