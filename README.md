@@ -145,9 +145,9 @@ They are all based on the same structure, and use the paho-mqtt java library.</p
 <h4 id="live-objects-parameters">2.1.1 LIVE OBJECTS PARAMETERS</h4>
 
 <p>Use static constants for all Live Objects parameters. This will certainly not what you will prefer to do in your real application code, but centralizing them in the samples gives you a complete overview of the different parameters.</p><p>
-A first group concern parameters defining the connection to Live Objets</p>
+A first group of parameters defines the connection to Live Objets</p>
 
-<code><pre>
+<code type="java"><pre>
 // Connection parameters
 public static String SERVER = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
 public static String API_KEY = "<<YOUR API KEY>>";                             // <-- REPLACE by YOUR API_KEY! 
