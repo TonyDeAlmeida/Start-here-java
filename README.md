@@ -157,14 +157,16 @@ public static String CLIENT_ID="urn:lo:nsid:samples:device1";               // i
 
 <p>Notice that you have to define the connection mode (device mode or bridged mode) when connecting</p>  
 <p>Connecting using SSL : you only have to change the SERVER end point to:
-<code>public static String SERVER mqtts://liveobjects.orange-business.comm:8883</code></p>
-
+```ruby
+public static String SERVER mqtts://liveobjects.orange-business.comm:8883</code></p>
+```
 <p>The second group of parameters defines the way your message will be published to Live Objects:</p>
 
-<pre><code>//Publication parameters
+```ruby
+//Publication parameters
 public static String TOPIC="dev/data";  // topic to publish to
 public static int qos = 1;              // set the qos
-</code></pre>
+```
 
 <h4 id="json-structure">2.1.2 JSON STRUCTURE</h4>
 
@@ -214,39 +216,45 @@ public static int qos = 1;              // set the qos
 
 <p><u>Create your client</u></p>
 
-<pre><code>MqttClient sampleClient = new MqttClient(<b>SERVER, CLIENT_ID</b>, new MemoryPersistence());
-</code></pre>
+```ruby
+MqttClient sampleClient = new MqttClient(<b>SERVER, CLIENT_ID</b>, new MemoryPersistence());
+```
 
 <p><u>Create and fill options</u></p>
 
-<pre><code>qttConnectOptions connOpts = new MqttConnectOptions();
+```ruby
+qttConnectOptions connOpts = new MqttConnectOptions();
 connOpts.setCleanSession(true);
 connOpts.setPassword(<b>API_KEY</b>.toCharArray());    
 connOpts.setUserName(<b>USERNAME</b>);  // use Device Mode
-</code></pre>
+```
 
 <p><u>Connect to Live Objects</u></p>
 
-<pre><code>sampleClient.connect(connOpts);
-</code></pre>
+```ruby
+sampleClient.connect(connOpts);
+```
 
 <p><u>Create your message</u></p>
 
-<pre><code>LoData loData = new LoData();
+```ruby
+LoData loData = new LoData();
 ... // fill members in the JSON structure (see reference guide for the JSON to use according to the publish mode and the topic)
-</code></pre>
+```
 
 <p><u>Send your messages</u></p>
 
-<pre><code>MqttMessage message = new MqttMessage(msg.getBytes());
+```ruby
+MqttMessage message = new MqttMessage(msg.getBytes());
 message.setQos(qos);
 sampleClient.publish(<b>TOPIC</b>, message);
-</code></pre>
+```
 
 <p><u>Disconnect</u></p>
 
-<pre><code>sampleClient.disconnect();
-</code></pre>
+```ruby
+sampleClient.disconnect();
+```
 
 
 <h3 id="consuming-data">3.3 CONSUMING DATA FROM LIVE OBJECTS</h3>
@@ -257,82 +265,93 @@ sampleClient.publish(<b>TOPIC</b>, message);
 <h4 id="consuming-data-mqtt">3.3.1 With MQTT</h4>
 <p><u>Create your client</u></p>
 
-<pre><code>MqttClient sampleCLient = new MqttClient(<b>SERVER</b>, <b>CLIENT_ID</b>, new MemoryPersistence());
-</code></pre>
+```ruby
+MqttClient sampleCLient = new MqttClient(<b>SERVER</b>, <b>CLIENT_ID</b>, new MemoryPersistence());
+```
 
 <p><u>Register the callback class that will handle subscription and message processing</u></p>
 
-<pre><code>sampleClient.setCallback(new SimpleMqttCallback(sampleClient); // SEE BELOW !!
-</code></pre>
+```ruby
+sampleClient.setCallback(new SimpleMqttCallback(sampleClient); // SEE BELOW !!
+```
 
 <p><u>Create and fill options</u></p>
 
-<pre><code>MqttConnectOptions connOpts = new MqttConnectOptions();
+```ruby
+MqttConnectOptions connOpts = new MqttConnectOptions();
 connOpts.setCleanSession(true);
 connOpts.setPassword(<b>API_KEY</b>.toCharArray());    
 connOpts.setUserName(<b>USERNAME</b>);  // use Bridge mode here to consume from fifo or router !
 connOpts.setAutomaticReconnect(true);
-</code></pre>
+```
 
 <p><u>Connect to Live Objects</u></p>
 
-<pre><code>sampleClient.connect(connOpts);
-</code></pre>
+```ruby
+sampleClient.connect(connOpts);
+```
 
 <p><u>Wait for messages processed by your SimpleMqttCallback object</u></p>
 
-<pre><code>synchronized (sampleClient) {
+```ruby
+synchronized (sampleClient) {
 sampleClient.wait();
 }
-</code></pre>
+```
 
 <p><u>Disconnect</u></p>
 
-<pre><code>sampleClient.disconnect();
-</code></pre>
+```ruby
+sampleClient.disconnect();
+```
 
 <p><u>Now, have a look at the the callback class :</u></p>
 <p>This class should implement the MqttCallbackExtended interface :</p>
 <p>First create the constructor :</p>
 
-<pre><code>private MqttClient mqttClient;
+```ruby
+private MqttClient mqttClient;
 public SimpleMqttCallback(MqttClient mqttClient) {
     this.mqttClient = mqttClient;
 }
-</code></pre>
+```
 
 <p>You need the reference to your mqqClient previously created to subscribe to the right Topic</p>
 <p>Then fill the different methods you implement</p>
 
-<pre><code>public void connectComplete(boolean reconnect, String serverURI) {
-</code></pre>
+```ruby
+public void connectComplete(boolean reconnect, String serverURI) {
+```
 
 <p>Once your MqttClient is connected, you will subscribe here : </p>
 
-<pre><code>try {
+```ruby
+try {
 System.out.printf("Consuming from topic : ", <b>TOPIC</b>);
     mqttClient.subscribe(<b>TOPIC</b>);
     System.out.println("... subscribed.");                              
 } catch (MqttException e) {
     System.out.println("Error during subscription");
 }   
-</code></pre>
+```
 
-<pre><code>public void messageArrived(String topic, MqttMessage message) throws Exception {
+```ruby
+public void messageArrived(String topic, MqttMessage message) throws Exception {
 All messages will be processed, (here simple print on stdout, but of course, you can process the messages according to your needs !
 System.out.println("Message received from Topic  " + TOPIC + " : " + mqttMessage);
 }
-</code></pre>
+```
 
 <p>
 The 2 last methods can be left empty. Use them according your needs (see Mqtt library documentation)
 </p>
 
-<pre><code>public void connectionLost(Throwable cause) {
+```ruby
+public void connectionLost(Throwable cause) {
 }
 public void deliveryComplete(IMqttDeliveryToken token) {
 }
-</code></pre>
+```
 
 
 <h4 id="consuming-data-lora">3.3.2 With LoRa</h4>
