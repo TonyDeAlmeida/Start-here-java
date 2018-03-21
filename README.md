@@ -147,13 +147,13 @@ They are all based on the same structure, and use the paho-mqtt java library.</p
 <p>Use static constants for all Live Objects parameters. This will certainly not what you will prefer to do in your real application code, but centralizing them in the samples gives you a complete overview of the different parameters.</p><p>
 A first group of parameters defines the connection to Live Objets</p>
 
-<code type="java">
+<code type="java"><pre>
 // Connection parameters
 public static String SERVER = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
 public static String API_KEY = "<<YOUR API KEY>>";                             // <-- REPLACE by YOUR API_KEY! 
 public static String USERNAME="json+device";                                // The option to publish in device mode
 public static String CLIENT_ID="urn:lo:nsid:samples:device1";               // in device mode : urn:lo:nsid:{namespace}:{id}
-</code>
+</pre></code>
 
 <p>Notice that you have to define the connection mode (device mode or bridged mode) when connecting</p>  
 <p>Connecting using SSL : you only have to change the SERVER end point to:
