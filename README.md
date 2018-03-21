@@ -17,30 +17,30 @@
 <li>client: your application that will make Live Objects API calls</li>
 <li>API-KEYS: the token that allows you to connect to your own tenant/space in Live Objects</li>
 <li>CLIENT-ID: identifier of the device or of the application currently trying to connect to Live Objects.</li>
-<li>endpoint: the url to access to a function of the API in REST</li>
+<li>endpoint: the URL to access to a function of the API in REST</li>
 <li>header: a user-defined HTTP header to carry information in a REST call</li>
 </ul>
 
 <h2 id="before-starting">Before starting</h2>
 
 <p>We focus here on the use of the APIs to push and consume data from the “Live Objects Bus” and to perform “device management” operations. </p><p>
-If you are familiar with the concepts of Live Objects bus (topics, publish mode,…), you can skip this chapter.
+If you are familiar with the concepts of Live Objects bus (topics, publish mode...), you can skip this chapter.
 </p>
 
 <h3 id="live-objects-bus">1.1 LIVE OBJECTS BUS</h3>
 
 
 
-<p>What is Live object bus ? It’s basicaly a place where you can push information to and from where you can consume this information.</p>
+<p>What is Live Objects BUS ? It’s basically a place where you can push information to and from where you can consume this information.</p>
 <p>In the IOT world, anybody will have in mind a sample case : </p>
 <code>Device  : publish data -> Live Objects -> consume by application(s)</code>
 
-<p>But you can also configure your device entering data in the UI :</p>
+<p>But you can also configure your device entering data in the web portal :</p>
 <code>Enter data in Live Objects UI -> consume by your device</code>
 
-<p>Publishing or consuming any kind of information, the first relevant questions are :</p>
+<p>Publishing or consuming any kind of information, the first relevant question is :</p>
 <ul>
-<li type="1">How can I do that ?  With Live Objects you will use different protocols, at this time MQTT(S) or HTTP(S)/Rest APIs are available to talk with Live Objects Bus. Choosing the right protocol depends of the Live Objects functionality you want to use.</li>
+<li type="1">How can I do that ?  With Live Objects you will use different protocols, at this time MQTT(S) or HTTP(S)/Rest APIs are available to talk with Live Objects BUS. Choosing the right protocol depends of the Live Objects functionality you want to use.</li>
 <li type="1">How addressing the bus ? You only need a little information</li>
     <ul>
     <li type="a" value="1">The server address</li>
@@ -62,8 +62,8 @@ If you are familiar with the concepts of Live Objects bus (topics, publish mode,
 
 A Topic is somehow any of this kind of information.
 <ul>
-<li>country : all people in the country will be be able to receive your message</li>
-<li>country/town/ street ; all people of the street of the town will be be able to receive your message</li>
+<li>country : all people in the country will be able to receive your message</li>
+<li>country/town/ street ; all people of the street of the town will be able to receive your message</li>
 <li>…</li>
 <li>country/town/street/.../door : only the people living there will be able to receive your message.</li>
 </ul>
@@ -159,7 +159,7 @@ public static String CLIENT_ID="urn:lo:nsid:samples:device1";               // i
 <p>Connecting using SSL : you only have to change the SERVER end point to:
 <code>public static String SERVER mqtts://liveobjects.orange-business.comm:8883</code></p>
 
-<p>The second group are parameters defining the way your message will be published to Live Objects:</p>
+<p>The second group of parameters defines the way your message will be published to Live Objects:</p>
 
 <code><pre>
 //Publication parameters
@@ -170,7 +170,7 @@ public static int qos = 1;              // set the qos
 <h4 id="json-structure">2.1.2 JSON STRUCTURE</h4>
 
 <p>All JSON structures are defined in separate packages.</p>
-<p>All Json structures defined by Live Object are named the same way: they start with Lo (LoCfg, LoData…). The other ones are your structure that you can change according your needs.</p>
+<p>All JSON structures defined by Live Objects are named the same way: they start with Lo (LoCfg, LoData…). The other ones are your structure that you can change according your needs.</p>
 
 <h2 id="using-mqtt-samples">USING MQTT(S) SAMPLES</h2>
 
@@ -211,7 +211,7 @@ public static int qos = 1;              // set the qos
 
 
 
-<p>Once defined the parametres required (remmeber upper in the document), the way to publish is always the same :</p>
+<p>Once defined the required parameters (remember upper in the document), the way to publish is always the same :</p>
 
 <p><u>Create your client</u></p>
 
@@ -261,7 +261,7 @@ sampleClient.disconnect();
 <p>Once defined the required parameters (remember upper in the document), the way to consume is always the same :</p>
 <p>The main difference with publishing is : you have to create a callback class dedicated to the processing of the delivery of messages, and register in an instance of it in your mqttClient.</p>
 
-<h4 id="consuming-data-mqtt">3.3.1 In MQTT</h4>
+<h4 id="consuming-data-mqtt">3.3.1 With MQTT</h4>
 <p><u>Create your client</u></p>
 
 <code><pre>
@@ -353,7 +353,7 @@ public void deliveryComplete(IMqttDeliveryToken token) {
 </pre></code>
 
 
-<h4 id="consuming-data-lora">3.3.2 In LoRa</h4>
+<h4 id="consuming-data-lora">3.3.2 With LoRa</h4>
 
 <p>Data sent by LoRa devices are automatically available in Live Objects datazone. You will consume them the same way as MQTT messages published directly from your « MQTT devices ». You only have to decide the way to consume them.</p>
 
