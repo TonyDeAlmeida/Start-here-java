@@ -33,10 +33,14 @@ If you are familiar with the concepts of Live Objects bus (topics, publish mode.
 
 <p>What is Live Objects BUS ? It’s basically a place where you can push information to and from where you can consume this information.</p>
 <p>In the IOT world, anybody will have in mind a sample case : </p>
-<code>Device  : publish data -> Live Objects -> consume by application(s)</code>
+```ruby
+Device  : publish data -> Live Objects -> consume by application(s)
+```
 
 <p>But you can also configure your device entering data in the web portal :</p>
-<code>Enter data in Live Objects UI -> consume by your device</code>
+```ruby
+Enter data in Live Objects UI -> consume by your device
+```
 
 <p>Publishing or consuming any kind of information, the first relevant question is :</p>
 <ul>
