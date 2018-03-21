@@ -33,14 +33,10 @@ If you are familiar with the concepts of Live Objects bus (topics, publish mode.
 
 <p>What is Live Objects BUS ? It’s basically a place where you can push information to and from where you can consume this information.</p>
 <p>In the IOT world, anybody will have in mind a sample case : </p>
-```ruby
-Device  : publish data -> Live Objects -> consume by application(s)
-```
+<code>Device  : publish data -> Live Objects -> consume by application(s)</code>
 
 <p>But you can also configure your device entering data in the web portal :</p>
-```ruby
-Enter data in Live Objects UI -> consume by your device
-```
+<code>Enter data in Live Objects UI -> consume by your device</code>
 
 <p>Publishing or consuming any kind of information, the first relevant question is :</p>
 <ul>
@@ -151,12 +147,13 @@ They are all based on the same structure, and use the paho-mqtt java library.</p
 <p>Use static constants for all Live Objects parameters. This will certainly not what you will prefer to do in your real application code, but centralizing them in the samples gives you a complete overview of the different parameters.</p><p>
 A first group of parameters defines the connection to Live Objets</p>
 
-<pre><code type="java">// Connection parameters
+```ruby
+// Connection parameters
 public static String SERVER = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
 public static String API_KEY = "<<YOUR API KEY>>";                             // <-- REPLACE by YOUR API_KEY! 
 public static String USERNAME="json+device";                                // The option to publish in device mode
 public static String CLIENT_ID="urn:lo:nsid:samples:device1";               // in device mode : urn:lo:nsid:{namespace}:{id}
-</code></pre>
+```
 
 <p>Notice that you have to define the connection mode (device mode or bridged mode) when connecting</p>  
 <p>Connecting using SSL : you only have to change the SERVER end point to:
