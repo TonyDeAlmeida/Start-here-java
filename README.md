@@ -186,24 +186,24 @@ public static int qos = 1;              // set the qos
     </tr>
         <tr>
         <td>Device Mode</td>
-        <td><a href="https://github.com/DatavenueLiveObjects/Start-here/tree/master/Java/Data%20management/Publish%20data%20in%20device%20mode">Publish data in device mode</a><br>
-        <a href="https://github.com/DatavenueLiveObjects/Start-here/tree/master/Java/Device management/MQTT devices/Commands">Commands</a><br>   
-        <a href="https://github.com/DatavenueLiveObjects/Start-here/tree/master/Java/Device management/MQTT devices/Configuration">Configuration</a><br>         
-        <a href="https://github.com/DatavenueLiveObjects/Start-here/tree/master/Java/Device management/MQTT devices/Publishing infos">Publishing info</a><br>          
+        <td><a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data%20management/Publish%20data%20in%20device%20mode">Publish data in device mode</a><br>
+        <a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Device management/MQTT devices/Commands">Commands</a><br>   
+        <a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Device management/MQTT devices/Configuration">Configuration</a><br>         
+        <a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Device management/MQTT devices/Publishing infos">Publishing info</a><br>          
 </td>
     </tr>
     <tr>
         <td>Bridge Mode / pubSub
         </td>
-        <td><a href="https://github.com/DatavenueLiveObjects/Start-here/tree/master/Java/Data management/Publish-Consume data in PubSub mode">Publish-Consume data in PubSub mode</a></td>
+        <td><a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data management/Publish-Consume data in PubSub mode">Publish-Consume data in PubSub mode</a></td>
     </tr>
     <tr>
         <td>Bridge Mode / router</td>
-        <td><a href="https://github.com/DatavenueLiveObjects/Start-here/tree/master/Java/Data management/Publish-consume data in router mode">Publish-consume data in router mode</a></td>
+        <td><a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data management/Publish-consume data in router mode">Publish-consume data in router mode</a></td>
     </tr>
     <tr>
         <td>Bridge Mode / fifo</td>
-        <td><a href="https://github.com/DatavenueLiveObjects/Start-here/tree/master/Java/Data management/Publish-consume data in FIFO mode">Publish-consume data in FIFO mode</a></td>
+        <td><a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data management/Publish-consume data in FIFO mode">Publish-consume data in FIFO mode</a></td>
     </tr>
 </table>
 
