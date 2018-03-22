@@ -61,6 +61,8 @@ public class DataPublisher {
 			loData.loc[1]=2.185;
 			loData.v = myData;   
 			myData.payload = "Message from deviceMode on dev/data on " + msgDt;
+			myData.temperature=24;
+			myData.hygrometry=12;
 			
 			Gson gson = new Gson();
 			String msg = gson.toJson(loData);
