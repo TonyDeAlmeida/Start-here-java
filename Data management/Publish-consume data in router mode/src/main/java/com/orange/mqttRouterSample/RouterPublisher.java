@@ -27,7 +27,7 @@ public class RouterPublisher {
 	
 	// Connection parameters
 	public static String SERVER    = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
-	public static String API_KEY   = "f6422939005946619dd8a2575db3cb76";           // <-- REPLACE by YOUR API_KEY!	
+	public static String API_KEY   = "enter your api key here";           // <-- REPLACE by YOUR API_KEY!	
 	public static String USERNAME  = "payload+bridge";								   // The option to publish in device mode
 	public static String CLIENT_ID = "myClientId";				   // in device mode : should be the syntax urn:lo:nsid:{namespace}:{id}
 	
