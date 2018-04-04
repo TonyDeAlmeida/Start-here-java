@@ -24,13 +24,13 @@ public class RouterConsumer {
 
 	// Connection parameters
 		public static String SERVER    = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
-		public static String API_KEY   = "enter your api key here";           // <-- REPLACE by YOUR API_KEY!	
-		public static String USERNAME  = "payload+bridge";							   // The option to publish in device mode
-		public static String CLIENT_ID = "app:" + UUID.randomUUID().toString();				  				   // in device mode : should be the syntax urn:lo:nsid:{namespace}:{id}
+		public static String API_KEY   = "enter your api key here";                    // <-- REPLACE by YOUR API_KEY!	
+		public static String USERNAME  = "payload+bridge";			       // The option to publish/subscribe in bridge mode
+		public static String CLIENT_ID = "app:" + UUID.randomUUID().toString();		// in device mode : should be the syntax urn:lo:nsid:{namespace}:{id}
 		
 		//Publication parameters
-		public static String TOPIC="router/#";	// topic to publish to
-		public static int qos = 1;                              // set the qos                                               
+		public static String TOPIC="router/#";	// topic to subscribe to
+		public static int qos = 1;              // set the qos                                               
 		
 
 	public static void main(String[] args) throws InterruptedException {
