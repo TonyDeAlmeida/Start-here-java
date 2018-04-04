@@ -23,7 +23,7 @@ import com.orange.mqttFifoSample.json.SampleData;
 public class FifoPublisher {
 	// Connection parameters
 	public static String SERVER    = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
-	public static String API_KEY   = "f6422939005946619dd8a2575db3cb76";           // <-- REPLACE by YOUR API_KEY!	
+	public static String API_KEY   = "enter your api key here";           // <-- REPLACE by YOUR API_KEY!	
 	public static String USERNAME  = "payload+bridge";						   // The option to publish in device mode
 	public static String CLIENT_ID = "myFifoClientId";				               // set client id to any value
 	
