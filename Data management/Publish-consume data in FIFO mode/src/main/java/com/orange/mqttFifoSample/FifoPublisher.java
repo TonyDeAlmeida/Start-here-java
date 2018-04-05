@@ -16,7 +16,9 @@ import com.orange.mqttFifoSample.json.SampleData;
 /**
  * Application connects to LO and publish messages.
  *
- * You MUST first starts the consumer before publishing, else data will be lost !
+ * Data published directly on fifo will not be stroed in the datazone, but consumed by a fifo consumer when this client 
+ * will be up.
+ * take care that you shouldn't add a routing key to this fifo ! 
  *
  */
 
