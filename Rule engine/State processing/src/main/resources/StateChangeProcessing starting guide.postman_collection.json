@@ -1,0 +1,58 @@
+{
+	"variables": [],
+	"info": {
+		"name": "StateChangeProcessing starting guide",
+		"_postman_id": "67342ee2-bd99-29db-ba79-14f7ac811e8c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createStateRule",
+			"request": {
+				"url": "https://liveobjects.orange-business.com/api/v0/eventprocessing/stateprocessing-rule",
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "*** enter your key here ***",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n\n{\n    \"name\": \"myStateRule1\",\n\t\"enabled\":true,\n\t\"stateKeypath\": \"streamId\",\n\t\"stateFunction\":   {\n\t \"if\":  [{\n          \"<\": [ {\n                  \"var\": \"value.temperature\"\n              },\n              20 ]\n      },\n      \"cold\",\n      {\n          \">\": [\n              {\n                  \"var\": \"value.temperature\"\n              },\n              20 ]\n      },\n      \"hot\" ]\n  }\n}\n\n"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "list state rules",
+			"request": {
+				"url": "https://liveobjects.orange-business.com/api/v0/eventprocessing/stateprocessing-rule",
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "*** enter your key here ***",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
