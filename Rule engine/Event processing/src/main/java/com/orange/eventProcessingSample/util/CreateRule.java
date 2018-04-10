@@ -31,8 +31,7 @@ public class CreateRule {
 	private static String createMatchingRule() {
 		String matchingRuleId = null;
 		
-		String serial="{\"dataPredicate\":{\"and\": [{ \"<\": [ {\"var\":\"value.hygrometry\"},20]}]},\"enabled\":true,\"name\": \"Test1211\"}";
-		
+		String serial="{\"dataPredicate\":{\"<\": [ {\"var\":\"value.hygrometry\"},20]},\"enabled\":true,\"name\": \"Test1211\"}";
 		
 		try {
 			Client client = ClientBuilder.newClient();
