@@ -18,7 +18,7 @@ public class CreateRule {
 
 	// Connection parameters
 	static private String SERVER = "https://liveobjects.orange-business.com/api/v0/"; // declare endpoints
-	public static String API_KEY = "f6422939005946619dd8a2575db3cb76"; // <-- REPLACE by YOUR API_KEY!
+	public static String API_KEY = "enter your key here";                             // <-- REPLACE by YOUR API_KEY!
 
 	// Publication parameters
 
