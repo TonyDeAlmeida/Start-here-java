@@ -89,31 +89,6 @@ public class CreateRule {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
-
-//	private static String send(String serial) {
-//		String matchingRuleId = null;
-//		try {
-//			Client client = ClientBuilder.newClient();
-//			WebTarget target = client.target(SERVER).path("eventprocessing/matching-rule");
-//
-//			Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON_TYPE).header("X-API-Key",API_KEY);
-//
-//			Invocation invocation =invocationBuilder.buildPost(Entity.entity(serial, MediaType.APPLICATION_JSON_TYPE));
-//			
-//			Response response=invocation.invoke();
-//			
-//
-//			LoMatchingReturn resp = response.readEntity(LoMatchingReturn.class);
-//			
-//			matchingRuleId = resp.id;
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		return matchingRuleId;
-//	}
-
 }
