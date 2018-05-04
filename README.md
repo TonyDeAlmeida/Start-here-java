@@ -137,15 +137,15 @@ Device mode ? Bridge mode ? How to choose:
 <li>Bridge mode is more used when you are using a gateway that hides Live Objects to your device.</li>
 </ul>
 
-<h2>Consume data</h2>
+<h2>2 Consume data</h2>
 Live Objects has a very powerful concept : the fifos !
 Fifos allows you to consume data from your application, event when your application is down for any reason (of course, while it is down you will not consume anything … , but as soon as your application is up again, all data published in the mean time will be delivered in the right order to your application.
 In pubsub mode or router mode, your application has to be up to consume the data at the time they are published to Live Objects
 
-<h2>2 The big question : topic, fifo and bindings</h2>
+<h2>3 The big question : topic, fifo and bindings</h2>
 Well : how do I choose a topic to publish to ?, how does this influence the way data will be consumed ?
 
-<h3>2.1 Mqtt devices</h3>
+<h3>3.1 Mqtt devices</h3>
 Data published on topic <b>/dev/data/xxx</b>  (xxx may be what you want) can be consumed on a fifo created with routing key <b>~event.v1.data.new</b>
 
 But  perhaps you need  to route your data to different consumer to best suit your needs. Let’s take an example :
@@ -195,7 +195,7 @@ development
 devFifo
 ~event.v1.data.new.mydev
 
-<h3>Lora devices</h3>
+<h3>3.2 Lora devices</h3>
 Data sent by Lora devices are automatically available in Live Objects data zone. You only have to decide of the way to consume them.
 Best way to take benefit of the Fifo mode : create fifos in Live Objects UI, with a binding rule :
 <ul>
@@ -203,18 +203,18 @@ Best way to take benefit of the Fifo mode : create fifos in Live Objects UI, wi
     <li>~event.v1.data.new.{DevEUI}.# : all messages of the device DevEUI.</li>
 </ul>
 
-<h2 id="samples-introduction">Samples introduction</h2>
+<h2 id="samples-introduction">4 Samples introduction</h2>
 
 <p>All samples are independent project that you run according your needs.</p>
 
 
-<h3 id="java-samples">2.1 JAVA SAMPLES (PUBLISHING AND CONSUMING)</h3>
+<h3 id="java-samples">4.1 JAVA SAMPLES (PUBLISHING AND CONSUMING)</h3>
 
 <p>All projects are maven projects, allowing you to use them directly in your preferred IDE.
 They are all based on the same structure, and use the paho-mqtt java library.</p>
 
 
-<h4 id="live-objects-parameters">2.1.1 LIVE OBJECTS PARAMETERS</h4>
+<h4 id="live-objects-parameters">4.1.1 LIVE OBJECTS PARAMETERS</h4>
 
 <p>Use static constants for all Live Objects parameters. This will certainly not what you will prefer to do in your real application code, but centralizing them in the samples gives you a complete overview of the different parameters.</p><p>
 A first group of parameters defines the connection to Live Objets</p>
@@ -240,14 +240,14 @@ public static String TOPIC="dev/data";  // topic to publish to
 public static int qos = 1;              // set the qos
 ```
 
-<h4 id="json-structure">2.1.2 JSON STRUCTURE</h4>
+<h4 id="json-structure">4.1.2 JSON STRUCTURE</h4>
 
 <p>All JSON structures are defined in separate packages.</p>
 <p>All JSON structures defined by Live Objects are named the same way: they start with Lo (LoCfg, LoData…). The other ones are your structure that you can change according your needs.</p>
 
-<h2 id="using-mqtt-samples">USING MQTT(S) SAMPLES</h2>
+<h2 id="using-mqtt-samples">5 USING MQTT(S) SAMPLES</h2>
 
-<h3 id="list-samples">3.1 LIST OF SAMPLES</h3>
+<h3 id="list-samples">5.1 LIST OF SAMPLES</h3>
 
 <p>For each project listed below, you will find more information in the readme.md</p>
 
@@ -280,7 +280,7 @@ public static int qos = 1;              // set the qos
 </table>
 
 
-<h3 id="publishing-data">3.2 PUBLISHING DATA FROM LIVE OBJECTS IN JAVA </h3>
+<h3 id="publishing-data">5.2 PUBLISHING DATA FROM LIVE OBJECTS IN JAVA </h3>
 
 
 
@@ -329,12 +329,12 @@ sampleClient.disconnect();
 ```
 
 
-<h3 id="consuming-data">3.3 CONSUMING DATA FROM LIVE OBJECTS</h3>
+<h3 id="consuming-data">5.3 CONSUMING DATA FROM LIVE OBJECTS</h3>
 
 <p>Once defined the required parameters (remember upper in the document), the way to consume is always the same :</p>
 <p>The main difference with publishing is : you have to create a callback class dedicated to the processing of the delivery of messages, and register in an instance of it in your mqttClient.</p>
 
-<h4 id="consuming-data-mqtt">3.3.1 With MQTT</h4>
+<h4 id="consuming-data-mqtt">5.3.1 With MQTT</h4>
 <p><u>Create your client</u></p>
 
 ```ruby
