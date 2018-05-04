@@ -130,6 +130,54 @@ and dev/ for the “device mode”.</p>
     <td>yes</td>
 </tr>
 </table>
+<h2>Publish data</h2>
+Device mode ? Bridge mode ? How to choose:
+Device mode is the best mode for device publishing directly to Live Objects
+Bridge mode is more used when you are using a gateway that hides Live Objects to your device.
+
+<h2>Consume data</h2>
+Live Objects has a very powerful concept : the fifos !
+Fifos allows you to consume data from your application, event when your application is down for any reason (of course, while it is down you will not consume anything … , but as soon as your application is up again, all data published in the mean time will be delivered in the right order to your application.
+In pubsub mode or router mode, your application has to be up to consume the data at the time they are published to Live Objects
+
+<h2>2 The big question : topic, fifo and bindings</h2>
+Well : how do I choose a topic to publish to ?, how does this influence the way data will be consumed ?
+<h3>2.1 Mqtt devices</h3>
+Data published on topic /dev/data/xxx  (xxx may be what you want) can be consumed on a fifo created with routing key ~event.v1.data.new
+But  perahps you need  to route your data to different consumer to best suit your needs. Let’s take an example :
+I want to consume the data of some devices to a developpement environment while some others are used in production.
+In that case you can publish end consume your data the following way :
+You create 2 fifo, let’s say for example devFifo and prodFifo. 
+Configure your production application to consume from prodFifo, while your development application will consume from devFifo.
+Configure your devices so that devices in production mode and devices used for development will publish to different topics (let’s say for example /dev/data/myprod and /dev/data/mydev.
+Then just create two routings keys in Live Objects for your two fifos :
+<ul>
+    <li>prodFifo : <b>~event.v1.data.new.myprod</b></li>
+    <li>devFifo : <b>~event.v1.data.new.mydev</b></li>
+</ul>
+
+
+
+Device kind
+Topic to publish
+Fifo
+
+production
+/dev/data/myprod
+prodFifo
+~event.v1.data.new.myprod
+development
+/dev/data/mydev
+devFifo
+~event.v1.data.new.mydev
+
+<h3Lora devices</h3>
+Data sent by Lora devices are automatically available in Live Objects data zone. You only have to decide of the way to consume them.
+Best way to take benefit of the Fifo mode : create fifos in Live Objects UI, with a binding rule :
+<ul>
+    <li>~event.v1.data.new.urn.lora.# : all messages of all devices</li>
+    <li>~event.v1.data.new.{DevEUI}.# : all messages of the device DevEUI.</li>
+</ul>
 
 <h2 id="samples-introduction">Samples introduction</h2>
 
