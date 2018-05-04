@@ -424,29 +424,3 @@ public void connectionLost(Throwable cause) {
 public void deliveryComplete(IMqttDeliveryToken token) {
 }
 ```
-
-
-<h4 id="consuming-data-lora">3.3.2 With LoRa</h4>
-
-<p>Data sent by LoRa devices are automatically available in Live Objects datazone. You will consume them the same way as MQTT messages published directly from your « MQTT devices ». You only have to decide the way to consume them.</p>
-
-<p>Best way : create a fifo in Live Objects portal, with a binding rule :</p>
-<ul>
-    <li>~event.v1.data.new.urn.lora.# : all messages from all devices</li>
-    <li>~event.v1.data.new.{DevEUI}.# : all messages from the DevEUI device.</li>
-</ul>
-
-
-<h2 id="using-rest">USING REST API IN JAVA</h2>
-<p>The best way to become familiarized with the REST Api(s) is to see them in action directly with Live Objects.</p>
-
-
-<h3 id="">4.1   JAVA REST SAMPLE</h3>
-
-<p>We give you here a sample, using Jersey</p>
-
-
-
-
-
-
