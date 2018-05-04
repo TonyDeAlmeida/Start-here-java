@@ -132,8 +132,10 @@ and dev/ for the “device mode”.</p>
 </table>
 <h2>Publish data</h2>
 Device mode ? Bridge mode ? How to choose:
-Device mode is the best mode for device publishing directly to Live Objects
-Bridge mode is more used when you are using a gateway that hides Live Objects to your device.
+<ul>
+<li>Device mode is the best mode for device publishing directly to Live Objects</li>
+<li>Bridge mode is more used when you are using a gateway that hides Live Objects to your device.</li>
+</ul>
 
 <h2>Consume data</h2>
 Live Objects has a very powerful concept : the fifos !
@@ -142,9 +144,11 @@ In pubsub mode or router mode, your application has to be up to consume the data
 
 <h2>2 The big question : topic, fifo and bindings</h2>
 Well : how do I choose a topic to publish to ?, how does this influence the way data will be consumed ?
+
 <h3>2.1 Mqtt devices</h3>
-Data published on topic /dev/data/xxx  (xxx may be what you want) can be consumed on a fifo created with routing key ~event.v1.data.new
-But  perahps you need  to route your data to different consumer to best suit your needs. Let’s take an example :
+Data published on topic <b>/dev/data/xxx</b>  (xxx may be what you want) can be consumed on a fifo created with routing key <b>~event.v1.data.new</b>
+
+But  perhaps you need  to route your data to different consumer to best suit your needs. Let’s take an example :
 I want to consume the data of some devices to a developpement environment while some others are used in production.
 In that case you can publish end consume your data the following way :
 You create 2 fifo, let’s say for example devFifo and prodFifo. 
@@ -156,7 +160,27 @@ Then just create two routings keys in Live Objects for your two fifos :
     <li>devFifo : <b>~event.v1.data.new.mydev</b></li>
 </ul>
 
+<table>
+<tr>
+    <td>Device kind</td>
+    <td>Topic to publish</td>
+    <td>Fifo</td>
+    <td>&nbsp;</td>
+</tr>
+<tr>
+    <td>production</td>
+    <td>/dev/data/myprod</td>
+    <td>prodFifo</td>
+    <td>~event.v1.data.new.myprod</td>
+</tr>
+<tr>
+    <td>development</td>
+    <td>/dev/data/mydev</td>
+    <td>devFifo</td>
+    <td>~event.v1.data.new.mydev</td>
+</tr>    
 
+</table>
 
 Device kind
 Topic to publish
