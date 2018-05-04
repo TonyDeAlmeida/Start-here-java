@@ -195,7 +195,7 @@ development
 devFifo
 ~event.v1.data.new.mydev
 
-<h3Lora devices</h3>
+<h3>Lora devices</h3>
 Data sent by Lora devices are automatically available in Live Objects data zone. You only have to decide of the way to consume them.
 Best way to take benefit of the Fifo mode : create fifos in Live Objects UI, with a binding rule :
 <ul>
