@@ -219,19 +219,19 @@ They are all based on the same structure, and use the paho-mqtt java library.</p
 <p>Use static constants for all Live Objects parameters. This will certainly not what you will prefer to do in your real application code, but centralizing them in the samples gives you a complete overview of the different parameters.</p><p>
 A first group of parameters defines the connection to Live Objets</p>
 
-```ruby
+
 // Connection parameters
 public static String SERVER = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
 public static String API_KEY = "<<YOUR API KEY>>";                             // <-- REPLACE by YOUR API_KEY! 
 public static String USERNAME="json+device";                                // The option to publish in device mode
 public static String CLIENT_ID="urn:lo:nsid:samples:device1";               // in device mode : urn:lo:nsid:{namespace}:{id}
-```
+
 
 <p>Notice that you have to define the connection mode (device mode or bridged mode) when connecting</p>  
 <p>Connecting using SSL : you only have to change the SERVER end point to:
-```ruby
+
 public static String SERVER mqtts://liveobjects.orange-business.comm:8883</code></p>
-```
+
 <p>The second group of parameters defines the way your message will be published to Live Objects:</p>
 
 //Publication parameters
@@ -287,18 +287,18 @@ public static int qos = 1;              // set the qos
 
 <p><u>Create your client</u></p>
 
-```ruby
+
 MqttClient sampleClient = new MqttClient(<b>SERVER, CLIENT_ID</b>, new MemoryPersistence());
-```
+
 
 <p><u>Create and fill options</u></p>
 
-```ruby
+
 qttConnectOptions connOpts = new MqttConnectOptions();
 connOpts.setCleanSession(true);
 connOpts.setPassword(<b>API_KEY</b>.toCharArray());    
 connOpts.setUserName(<b>USERNAME</b>);  // use Device Mode
-```
+
 
 <p><u>Connect to Live Objects</u></p>
 
