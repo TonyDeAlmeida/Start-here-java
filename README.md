@@ -4,7 +4,7 @@
 
 <h1 id="prerequisite">Getting Started Guide</h1>
 
-<p>This document describes how to use the main features of Live Objects (LO) to develop your IoT application. You will find all the needed information about the following points :</p>
+<p>This document describes how to use the main features of Live Objects (LO) to develop your IoT application. </p>
 
 
 
