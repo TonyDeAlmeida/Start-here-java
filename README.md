@@ -234,11 +234,10 @@ public static String SERVER mqtts://liveobjects.orange-business.comm:8883</code>
 ```
 <p>The second group of parameters defines the way your message will be published to Live Objects:</p>
 
-```ruby
 //Publication parameters
 public static String TOPIC="dev/data";  // topic to publish to
 public static int qos = 1;              // set the qos
-```
+
 
 <h4 id="json-structure">4.1.2 JSON STRUCTURE</h4>
 
