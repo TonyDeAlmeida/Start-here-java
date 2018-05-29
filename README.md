@@ -6,10 +6,6 @@
 
 <p>This document describes how to use the main features of Live Objects (LO) to develop your IoT application. You will find all the needed information about the following points :</p>
 
-<ul>
-<li><a anchor="" href="https://developer.orange.com/apis/datavenue/getting-started#" target="_self">bla bla</a></li>
-<li><a anchor="" href="https://developer.orange.com/apis/datavenue/getting-started#" target="_self">bla bla</a></li>
-</ul>
 
 
 <h2 id="terminology">Terminology:</h2>
@@ -387,7 +383,7 @@ public SimpleMqttCallback(MqttClient mqttClient) {
 }
 ```
 
-<p>You need the reference to your mqqClient previously created to subscribe to the right Topic</p>
+<p>You need the reference to your mqttClient previously created to subscribe to the right Topic</p>
 <p>Then fill the different methods you implement</p>
 
 ```ruby
