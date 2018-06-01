@@ -21,33 +21,36 @@ We focus here on the use of the APIs to push and consume data from the “Live O
 If you are familiar with the concepts of Live Objects bus (topics, publish mode...), you can skip this chapter.
 
 
-<h3 id="live-objects-bus">1.1 LIVE OBJECTS BUS</h3>
+## 1.1 LIVE OBJECTS BUS ## 
 
 
 
 What is Live Objects BUS ? It’s basically a place where you can push information to and from where you can consume this information.
 In the IOT world, anybody will have in mind a sample case : 
-<code>Device  : publish data -> Live Objects -> consume by application(s)</code>
+
+```ruby
+Device  : publish data -> Live Objects -> consume by application(s)
+```
 
 But you can also configure your device entering data in the web portal :
-<code>Enter data in Live Objects UI -> consume by your device</code>
+```ruby
+Enter data in Live Objects UI -> consume by your device
+```
 
 Publishing or consuming any kind of information, the first relevant question is :
-<ul>
-<li type="1">How can I do that ?  With Live Objects you will use different protocols, at this time MQTT(S) or HTTP(S)/Rest APIs are available to talk with Live Objects BUS. Choosing the right protocol depends of the Live Objects functionality you want to use.</li>
-<li type="1">How addressing the bus ? You only need a little information</li>
-    <ul>
-    <li type="a" value="1">The server address</li>
-    <li type="a">A “message box address”. In our case, these message boxes are in fact message queues (messages are queued in them), and we will use the name of “Topic” as the address of these message queues.</li>
-    </ul>
-<li type="1">How am I identified ? You will have to use:</li>
-    <ul>
-    <li>your own API-KEY</li>
-    <li>a CLIENT-ID</li>
-    </ul>
-</ul>
 
-<h3 id="topic-concept">1.2 TOPIC concepts</h3>
+1. How can I do that ?  With Live Objects you will use different protocols, at this time MQTT(S) or HTTP(S)/Rest APIs are available to talk with Live Objects BUS. Choosing the right protocol depends of the Live Objects functionality you want to use.
+
+2. How addressing the bus ? You only need a little information
+    a. The server address
+    b. A “message box address”. In our case, these message boxes are in fact message queues (messages are queued in them), and we will use the name of “Topic” as the address of these message queues.
+    
+3. How am I identified ? You will have to use:
+    <ul>
+    * your own API-KEY
+    * a CLIENT-ID
+ 
+## 1.2 TOPIC concepts ## 
 
 We can make a parallel. If you want to send somebody some information, you will need:
 <ul>
@@ -139,7 +142,7 @@ In pubsub mode or router mode, your application has to be up to consume the data
 <h2>3 The big question : topic, fifo and bindings</h2>
 Well : how do I choose a topic to publish to ?, how does this influence the way data will be consumed ?
 
-<h3>3.1 Mqtt devices</h3>
+## 3.1 Mqtt devices ## 
 Data published on topic <b>/dev/data/xxx</b>  (xxx may be what you want) can be consumed on a fifo created with routing key <b>~event.v1.data.new</b>
 
 But  perhaps you need  to route your data to different consumer to best suit your needs. Let’s take an example :
