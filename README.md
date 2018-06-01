@@ -23,8 +23,6 @@ If you are familiar with the concepts of Live Objects bus (topics, publish mode.
 
 ## 1.1 LIVE OBJECTS BUS ## 
 
-
-
 What is Live Objects BUS ? It’s basically a place where you can push information to and from where you can consume this information.
 In the IOT world, anybody will have in mind a sample case : 
 
@@ -46,28 +44,25 @@ Publishing or consuming any kind of information, the first relevant question is 
     b. A “message box address”. In our case, these message boxes are in fact message queues (messages are queued in them), and we will use the name of “Topic” as the address of these message queues.
     
 3. How am I identified ? You will have to use:
-    <ul>
     * your own API-KEY
     * a CLIENT-ID
  
 ## 1.2 TOPIC concepts ## 
 
 We can make a parallel. If you want to send somebody some information, you will need:
-<ul>
-<li>its country, its town, its street, its street address, its stage, its door number</li>
-</ul>
+    * its country, its town, its street, its street address, its stage, its door number
 
 A Topic is somehow any of this kind of information.
-<ul>
-<li>country : all people in the country will be able to receive your message</li>
-<li>country/town/ street ; all people of the street of the town will be able to receive your message</li>
-<li>…</li>
-<li>country/town/street/.../door : only the people living there will be able to receive your message.</li>
-</ul>
+    * country : all people in the country will be able to receive your message
+    * country/town/ street ; all people of the street of the town will be able to receive your message
+    * …
+    * country/town/street/.../door : only the people living there will be able to receive your message.
+
+
 In Live Objects, you have predefined parts of the addresses that are fixed, the other are of your choice.
 
 
-<h3 id="device-mode-vs-bridge-mode">1.3 DEVICE MODE VS BRIDGE MODE</h3>
+## 1.3 DEVICE MODE VS BRIDGE MODE ## 
 
 You can publish using 2 modes:
 <table>
@@ -127,19 +122,19 @@ Pay attention that only some addresses will make your data persisting in the Liv
     <td>yes</td>
 </tr>
 </table>
-<h2>Publish data</h2>
-Device mode ? Bridge mode ? How to choose:
-<ul>
-<li>Device mode is the best mode for device publishing directly to Live Objects</li>
-<li>Bridge mode is more used when you are using a gateway that hides Live Objects to your device.</li>
-</ul>
 
-<h2>2 Consume data</h2>
+### 1 Publish data ###
+Device mode ? Bridge mode ? How to choose:
+
+    * Device mode is the best mode for device publishing directly to Live Objects
+    * Bridge mode is more used when you are using a gateway that hides Live Objects to your device.
+
+### 2 Consume data ###
 Live Objects has a very powerful concept : the fifos !
 Fifos allows you to consume data from your application, event when your application is down for any reason (of course, while it is down you will not consume anything … , but as soon as your application is up again, all data published in the mean time will be delivered in the right order to your application.
 In pubsub mode or router mode, your application has to be up to consume the data at the time they are published to Live Objects
 
-<h2>3 The big question : topic, fifo and bindings</h2>
+### 3 The big question : topic, fifo and bindings ### 
 Well : how do I choose a topic to publish to ?, how does this influence the way data will be consumed ?
 
 ## 3.1 Mqtt devices ## 
@@ -152,10 +147,9 @@ You create 2 fifo, let’s say for example devFifo and prodFifo.
 Configure your production application to consume from prodFifo, while your development application will consume from devFifo.
 Configure your devices so that devices in production mode and devices used for development will publish to different topics (let’s say for example /dev/data/myprod and /dev/data/mydev.
 Then just create two routings keys in Live Objects for your two fifos :
-<ul>
-    <li>prodFifo : <b>~event.v1.data.new.myprod</b></li>
-    <li>devFifo : <b>~event.v1.data.new.mydev</b></li>
-</ul>
+
+    * prodFifo : <b>~event.v1.data.new.myprod</b>
+    * devFifo : <b>~event.v1.data.new.mydev</b>
 
 <table>
 <tr>
@@ -192,58 +186,62 @@ development
 devFifo
 ~event.v1.data.new.mydev
 
-<h3>3.2 Lora devices</h3>
+## 3.2 Lora devices ##
 Data sent by Lora devices are automatically available in Live Objects data zone. You only have to decide of the way to consume them.
 Best way to take benefit of the Fifo mode : create fifos in Live Objects UI, with a binding rule :
-<ul>
-    <li>~event.v1.data.new.urn.lora.# : all messages of all devices</li>
-    <li>~event.v1.data.new.{DevEUI}.# : all messages of the device DevEUI.</li>
-</ul>
 
-<h2 id="samples-introduction">4 Samples introduction</h2>
+    * ~event.v1.data.new.urn.lora.# : all messages of all devices
+    * ~event.v1.data.new.{DevEUI}.# : all messages of the device DevEUI.
+
+
+# 4 Samples introduction # 
 
 All samples are independent project that you run according your needs.
 
 
-<h3 id="java-samples">4.1 JAVA SAMPLES (PUBLISHING AND CONSUMING)</h3>
+## 4.1 JAVA SAMPLES (PUBLISHING AND CONSUMING) ## 
 
 All projects are maven projects, allowing you to use them directly in your preferred IDE.
 They are all based on the same structure, and use the paho-mqtt java library.
 
 
-<h4 id="live-objects-parameters">4.1.1 LIVE OBJECTS PARAMETERS</h4>
+### 4.1.1 LIVE OBJECTS PARAMETERS ###
 
 Use static constants for all Live Objects parameters. This will certainly not what you will prefer to do in your real application code, but centralizing them in the samples gives you a complete overview of the different parameters.
 A first group of parameters defines the connection to Live Objets
 
-
+```ruby
 // Connection parameters
 public static String SERVER = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
 public static String API_KEY = "<<YOUR API KEY>>";                             // <-- REPLACE by YOUR API_KEY! 
 public static String USERNAME="json+device";                                // The option to publish in device mode
 public static String CLIENT_ID="urn:lo:nsid:samples:device1";               // in device mode : urn:lo:nsid:{namespace}:{id}
-
+```
 
 Notice that you have to define the connection mode (device mode or bridged mode) when connecting  
 Connecting using SSL : you only have to change the SERVER end point to:
 
+```ruby
 public static String SERVER mqtts://liveobjects.orange-business.comm:8883</code>
+```
 
 The second group of parameters defines the way your message will be published to Live Objects:
 
+
+```ruby
 //Publication parameters
 public static String TOPIC="dev/data";  // topic to publish to
 public static int qos = 1;              // set the qos
+```
 
-
-<h4 id="json-structure">4.1.2 JSON STRUCTURE</h4>
+### 4.1.2 JSON STRUCTURE ###
 
 All JSON structures are defined in separate packages.
 All JSON structures defined by Live Objects are named the same way: they start with Lo (LoCfg, LoData…). The other ones are your structure that you can change according your needs.
 
-<h2 id="using-mqtt-samples">5 USING MQTT(S) SAMPLES</h2>
+# 5 USING MQTT(S) SAMPLES #
 
-<h3 id="list-samples">5.1 LIST OF SAMPLES</h3>
+## 5.1 LIST OF SAMPLES ##
 
 For each project listed below, you will find more information in the readme.md
 
@@ -276,7 +274,7 @@ For each project listed below, you will find more information in the readme.md
 </table>
 
 
-<h3 id="publishing-data">5.2 PUBLISHING DATA FROM LIVE OBJECTS IN JAVA </h3>
+## 5.2 PUBLISHING DATA FROM LIVE OBJECTS IN JAVA ##
 
 
 
@@ -284,18 +282,18 @@ Once defined the required parameters (remember upper in the document), the way t
 
 <u>Create your client</u>
 
-
+```ruby
 MqttClient sampleClient = new MqttClient(<b>SERVER, CLIENT_ID</b>, new MemoryPersistence());
-
+```
 
 <u>Create and fill options</u>
 
-
+```ruby
 qttConnectOptions connOpts = new MqttConnectOptions();
 connOpts.setCleanSession(true);
 connOpts.setPassword(<b>API_KEY</b>.toCharArray());    
 connOpts.setUserName(<b>USERNAME</b>);  // use Device Mode
-
+```
 
 <u>Connect to Live Objects</u>
 
@@ -325,12 +323,12 @@ sampleClient.disconnect();
 ```
 
 
-<h3 id="consuming-data">5.3 CONSUMING DATA FROM LIVE OBJECTS</h3>
+## 5.3 CONSUMING DATA FROM LIVE OBJECTS ##
 
 Once defined the required parameters (remember upper in the document), the way to consume is always the same :
 The main difference with publishing is : you have to create a callback class dedicated to the processing of the delivery of messages, and register in an instance of it in your mqttClient.
 
-<h4 id="consuming-data-mqtt">5.3.1 With MQTT</h4>
+### 5.3.1 With MQTT ###
 <u>Create your client</u>
 
 ```ruby
