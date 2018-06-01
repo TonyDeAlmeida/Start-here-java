@@ -1,40 +1,38 @@
-<p>This document describes how to use the main features of Live Objects to develop your IoT application.</p>
+This document describes how to use the main features of Live Objects to develop your IoT application.
 
 
 
-<h1 id="prerequisite">Getting Started Guide</h1>
+# Getting Started Guide #
 
-<p>This document describes how to use the main features of Live Objects (LO) to develop your IoT application. </p>
+This document describes how to use the main features of Live Objects (LO) to develop your IoT application. 
+
+## Terminology: ##
+
+* client: your application that will make Live Objects API calls
+* API-KEYS: the token that allows you to connect to your own tenant/space in Live Objects
+* CLIENT-ID: identifier of the device or of the application currently trying to connect to Live Objects.
+* endpoint: the URL to access to a function of the API in REST
+* header: a user-defined HTTP header to carry information in a REST call
 
 
+## Before starting ## 
 
-<h2 id="terminology">Terminology:</h2>
-<ul>
-<li>client: your application that will make Live Objects API calls</li>
-<li>API-KEYS: the token that allows you to connect to your own tenant/space in Live Objects</li>
-<li>CLIENT-ID: identifier of the device or of the application currently trying to connect to Live Objects.</li>
-<li>endpoint: the URL to access to a function of the API in REST</li>
-<li>header: a user-defined HTTP header to carry information in a REST call</li>
-</ul>
-
-<h2 id="before-starting">Before starting</h2>
-
-<p>We focus here on the use of the APIs to push and consume data from the “Live Objects Bus” and to perform “device management” operations. </p><p>
+We focus here on the use of the APIs to push and consume data from the “Live Objects Bus” and to perform “device management” operations. 
 If you are familiar with the concepts of Live Objects bus (topics, publish mode...), you can skip this chapter.
-</p>
+
 
 <h3 id="live-objects-bus">1.1 LIVE OBJECTS BUS</h3>
 
 
 
-<p>What is Live Objects BUS ? It’s basically a place where you can push information to and from where you can consume this information.</p>
-<p>In the IOT world, anybody will have in mind a sample case : </p>
+What is Live Objects BUS ? It’s basically a place where you can push information to and from where you can consume this information.
+In the IOT world, anybody will have in mind a sample case : 
 <code>Device  : publish data -> Live Objects -> consume by application(s)</code>
 
-<p>But you can also configure your device entering data in the web portal :</p>
+But you can also configure your device entering data in the web portal :
 <code>Enter data in Live Objects UI -> consume by your device</code>
 
-<p>Publishing or consuming any kind of information, the first relevant question is :</p>
+Publishing or consuming any kind of information, the first relevant question is :
 <ul>
 <li type="1">How can I do that ?  With Live Objects you will use different protocols, at this time MQTT(S) or HTTP(S)/Rest APIs are available to talk with Live Objects BUS. Choosing the right protocol depends of the Live Objects functionality you want to use.</li>
 <li type="1">How addressing the bus ? You only need a little information</li>
@@ -51,7 +49,7 @@ If you are familiar with the concepts of Live Objects bus (topics, publish mode.
 
 <h3 id="topic-concept">1.2 TOPIC concepts</h3>
 
-<p>We can make a parallel. If you want to send somebody some information, you will need:</p>
+We can make a parallel. If you want to send somebody some information, you will need:
 <ul>
 <li>its country, its town, its street, its street address, its stage, its door number</li>
 </ul>
@@ -63,7 +61,7 @@ A Topic is somehow any of this kind of information.
 <li>…</li>
 <li>country/town/street/.../door : only the people living there will be able to receive your message.</li>
 </ul>
-<p>In Live Objects, you have predefined parts of the addresses that are fixed, the other are of your choice.</p>
+In Live Objects, you have predefined parts of the addresses that are fixed, the other are of your choice.
 
 
 <h3 id="device-mode-vs-bridge-mode">1.3 DEVICE MODE VS BRIDGE MODE</h3>
@@ -80,10 +78,10 @@ You can publish using 2 modes:
 </tr>
 </table>
 
-<p>When using one mode, you must follow the following rules:</p>
-<p>The first part of the topic is the type of the topic: pubsub/, fifo/ or router/ for the bridge mode
-and dev/ for the “device mode”.</p>
-<p>Pay attention that only some addresses will make your data persisting in the Live Objects “data zone”, all others will be available only for your consumers (Elastic search/Kibana impact)</p>
+When using one mode, you must follow the following rules:
+The first part of the topic is the type of the topic: pubsub/, fifo/ or router/ for the bridge mode
+and dev/ for the “device mode”.
+Pay attention that only some addresses will make your data persisting in the Live Objects “data zone”, all others will be available only for your consumers (Elastic search/Kibana impact)
 
 <table>
 <tr>
@@ -201,19 +199,19 @@ Best way to take benefit of the Fifo mode : create fifos in Live Objects UI, wi
 
 <h2 id="samples-introduction">4 Samples introduction</h2>
 
-<p>All samples are independent project that you run according your needs.</p>
+All samples are independent project that you run according your needs.
 
 
 <h3 id="java-samples">4.1 JAVA SAMPLES (PUBLISHING AND CONSUMING)</h3>
 
-<p>All projects are maven projects, allowing you to use them directly in your preferred IDE.
-They are all based on the same structure, and use the paho-mqtt java library.</p>
+All projects are maven projects, allowing you to use them directly in your preferred IDE.
+They are all based on the same structure, and use the paho-mqtt java library.
 
 
 <h4 id="live-objects-parameters">4.1.1 LIVE OBJECTS PARAMETERS</h4>
 
-<p>Use static constants for all Live Objects parameters. This will certainly not what you will prefer to do in your real application code, but centralizing them in the samples gives you a complete overview of the different parameters.</p><p>
-A first group of parameters defines the connection to Live Objets</p>
+Use static constants for all Live Objects parameters. This will certainly not what you will prefer to do in your real application code, but centralizing them in the samples gives you a complete overview of the different parameters.
+A first group of parameters defines the connection to Live Objets
 
 
 // Connection parameters
@@ -223,12 +221,12 @@ public static String USERNAME="json+device";                                // T
 public static String CLIENT_ID="urn:lo:nsid:samples:device1";               // in device mode : urn:lo:nsid:{namespace}:{id}
 
 
-<p>Notice that you have to define the connection mode (device mode or bridged mode) when connecting</p>  
-<p>Connecting using SSL : you only have to change the SERVER end point to:
+Notice that you have to define the connection mode (device mode or bridged mode) when connecting  
+Connecting using SSL : you only have to change the SERVER end point to:
 
-public static String SERVER mqtts://liveobjects.orange-business.comm:8883</code></p>
+public static String SERVER mqtts://liveobjects.orange-business.comm:8883</code>
 
-<p>The second group of parameters defines the way your message will be published to Live Objects:</p>
+The second group of parameters defines the way your message will be published to Live Objects:
 
 //Publication parameters
 public static String TOPIC="dev/data";  // topic to publish to
@@ -237,14 +235,14 @@ public static int qos = 1;              // set the qos
 
 <h4 id="json-structure">4.1.2 JSON STRUCTURE</h4>
 
-<p>All JSON structures are defined in separate packages.</p>
-<p>All JSON structures defined by Live Objects are named the same way: they start with Lo (LoCfg, LoData…). The other ones are your structure that you can change according your needs.</p>
+All JSON structures are defined in separate packages.
+All JSON structures defined by Live Objects are named the same way: they start with Lo (LoCfg, LoData…). The other ones are your structure that you can change according your needs.
 
 <h2 id="using-mqtt-samples">5 USING MQTT(S) SAMPLES</h2>
 
 <h3 id="list-samples">5.1 LIST OF SAMPLES</h3>
 
-<p>For each project listed below, you will find more information in the readme.md</p>
+For each project listed below, you will find more information in the readme.md
 
 <table>
     <tr>
@@ -279,15 +277,15 @@ public static int qos = 1;              // set the qos
 
 
 
-<p>Once defined the required parameters (remember upper in the document), the way to publish is always the same :</p>
+Once defined the required parameters (remember upper in the document), the way to publish is always the same :
 
-<p><u>Create your client</u></p>
+<u>Create your client</u>
 
 
 MqttClient sampleClient = new MqttClient(<b>SERVER, CLIENT_ID</b>, new MemoryPersistence());
 
 
-<p><u>Create and fill options</u></p>
+<u>Create and fill options</u>
 
 
 qttConnectOptions connOpts = new MqttConnectOptions();
@@ -296,20 +294,20 @@ connOpts.setPassword(<b>API_KEY</b>.toCharArray());
 connOpts.setUserName(<b>USERNAME</b>);  // use Device Mode
 
 
-<p><u>Connect to Live Objects</u></p>
+<u>Connect to Live Objects</u>
 
 ```ruby
 sampleClient.connect(connOpts);
 ```
 
-<p><u>Create your message</u></p>
+<u>Create your message</u>
 
 ```ruby
 LoData loData = new LoData();
 ... // fill members in the JSON structure (see reference guide for the JSON to use according to the publish mode and the topic)
 ```
 
-<p><u>Send your messages</u></p>
+<u>Send your messages</u>
 
 ```ruby
 MqttMessage message = new MqttMessage(msg.getBytes());
@@ -317,7 +315,7 @@ message.setQos(qos);
 sampleClient.publish(<b>TOPIC</b>, message);
 ```
 
-<p><u>Disconnect</u></p>
+<u>Disconnect</u>
 
 ```ruby
 sampleClient.disconnect();
@@ -326,23 +324,23 @@ sampleClient.disconnect();
 
 <h3 id="consuming-data">5.3 CONSUMING DATA FROM LIVE OBJECTS</h3>
 
-<p>Once defined the required parameters (remember upper in the document), the way to consume is always the same :</p>
-<p>The main difference with publishing is : you have to create a callback class dedicated to the processing of the delivery of messages, and register in an instance of it in your mqttClient.</p>
+Once defined the required parameters (remember upper in the document), the way to consume is always the same :
+The main difference with publishing is : you have to create a callback class dedicated to the processing of the delivery of messages, and register in an instance of it in your mqttClient.
 
 <h4 id="consuming-data-mqtt">5.3.1 With MQTT</h4>
-<p><u>Create your client</u></p>
+<u>Create your client</u>
 
 ```ruby
 MqttClient sampleCLient = new MqttClient(<b>SERVER</b>, <b>CLIENT_ID</b>, new MemoryPersistence());
 ```
 
-<p><u>Register the callback class that will handle subscription and message processing</u></p>
+<u>Register the callback class that will handle subscription and message processing</u>
 
 ```ruby
 sampleClient.setCallback(new SimpleMqttCallback(sampleClient); // SEE BELOW !!
 ```
 
-<p><u>Create and fill options</u></p>
+<u>Create and fill options</u>
 
 ```ruby
 MqttConnectOptions connOpts = new MqttConnectOptions();
@@ -352,13 +350,13 @@ connOpts.setUserName(<b>USERNAME</b>);  // use Bridge mode here to consume from 
 connOpts.setAutomaticReconnect(true);
 ```
 
-<p><u>Connect to Live Objects</u></p>
+<u>Connect to Live Objects</u>
 
 ```ruby
 sampleClient.connect(connOpts);
 ```
 
-<p><u>Wait for messages processed by your SimpleMqttCallback object</u></p>
+<u>Wait for messages processed by your SimpleMqttCallback object</u>
 
 ```ruby
 synchronized (sampleClient) {
@@ -366,15 +364,15 @@ sampleClient.wait();
 }
 ```
 
-<p><u>Disconnect</u></p>
+<u>Disconnect</u>
 
 ```ruby
 sampleClient.disconnect();
 ```
 
-<p><u>Now, have a look at the the callback class :</u></p>
-<p>This class should implement the MqttCallbackExtended interface :</p>
-<p>First create the constructor :</p>
+<u>Now, have a look at the the callback class :</u>
+This class should implement the MqttCallbackExtended interface :
+First create the constructor :
 
 ```ruby
 private MqttClient mqttClient;
@@ -383,14 +381,14 @@ public SimpleMqttCallback(MqttClient mqttClient) {
 }
 ```
 
-<p>You need the reference to your mqttClient previously created to subscribe to the right Topic</p>
-<p>Then fill the different methods you implement</p>
+You need the reference to your mqttClient previously created to subscribe to the right Topic
+Then fill the different methods you implement
 
 ```ruby
 public void connectComplete(boolean reconnect, String serverURI) {
 ```
 
-<p>Once your MqttClient is connected, you will subscribe here : </p>
+Once your MqttClient is connected, you will subscribe here : 
 
 ```ruby
 try {
@@ -409,9 +407,9 @@ System.out.println("Message received from Topic  " + TOPIC + " : " + mqttMessage
 }
 ```
 
-<p>
+
 The 2 last methods can be left empty. Use them according your needs (see Mqtt library documentation)
-</p>
+
 
 ```ruby
 public void connectionLost(Throwable cause) {
