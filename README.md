@@ -399,9 +399,7 @@ System.out.printf("Consuming from topic : ", <b>TOPIC</b>);
 } catch (MqttException e) {
     System.out.println("Error during subscription");
 }   
-```
 
-```ruby
 public void messageArrived(String topic, MqttMessage message) throws Exception {
 All messages will be processed, (here simple print on stdout, but of course, you can process the messages according to your needs !
 System.out.println("Message received from Topic  " + TOPIC + " : " + mqttMessage);
