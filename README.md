@@ -155,7 +155,7 @@ Notice that you have to define the connection mode (device mode or bridged mode)
 Connecting using SSL : you only have to change the SERVER end point to:
 
 ```ruby
-public static String SERVER mqtts://liveobjects.orange-business.comm:8883</code>
+public static String SERVER mqtts://liveobjects.orange-business.comm:8883
 ```
 
 The second group of parameters defines the way your message will be published to Live Objects:
