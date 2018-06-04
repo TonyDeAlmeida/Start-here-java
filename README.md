@@ -65,63 +65,25 @@ In Live Objects, you have predefined parts of the addresses that are fixed, the 
 ## 1.3 DEVICE MODE VS BRIDGE MODE ## 
 
 You can publish using 2 modes:
-<table>
-<tr>
-    <td>Device mode</td>
-    <td>the mode for devices to publish directly to Live Objects.</td>
-</tr>
-<tr>
-    <td>Bridge mode</td>
-    <td>used when you are using a gateway between your devices and Live Objects.</td>
-</tr>
-</table>
+
+Type mode | for what ?
+------------ | -------------
+Device mode  | the mode for devices to publish directly to Live Objects.</td>
+Bridge mode | used when you are using a gateway between your devices and Live Objects.
 
 When using one mode, you must follow the following rules:
 The first part of the topic is the type of the topic: pubsub/, fifo/ or router/ for the bridge mode
 and dev/ for the “device mode”.
 Pay attention that only some addresses will make your data persisting in the Live Objects “data zone”, all others will be available only for your consumers (Elastic search/Kibana impact)
 
-<table>
-<tr>
-    <td>Publish mode</td>
-    <td>Type</td>
-    <td>Address</td>
-    <td>Persisted in data zone</td>
-</tr>
-<tr>
-    <td>Device Mode</td>
-    <td>dev/</td>
-    <td>fixed : data, cfg, ...</td>
-    <td>yes for dev/data<br>
-    yes for dev/data/xxx
-    </td>
-</tr>
-<tr>
-    <td>Bridge mode (pubsub)</td>
-    <td>pubsub/</td>
-    <td></td>
-    <td>no</td>
-</tr>
-<tr>
-    <td>Bridge mode (fifo)</td>
-    <td>fifo/</td>
-    <td>at your choice</td>
-    <td>no</td>
-</tr>
-<tr>
-    <td>Bridge mode (routeur)</td>
-    <td>routeur/</td>
-    <td>at your choice</td>
-    <td>no</td>
-</tr>
-<tr>
-    <td>Bridge mode (routeur)</td>
-    <td>routeur/</td>
-    <td>~event/v1/data/new<br>
-~event/v1/data/new/xxx</td>
-    <td>yes</td>
-</tr>
-</table>
+
+Publish mode  | Type | Address | Persisted in data zone
+------------ | ------------- | ------------ | -------------
+Device Mode | dev/ | fixed : data, cfg, ... | yes for dev/data , yes for dev/data/xxx
+Bridge mode (pubsub) | pubsub/ | - | no
+Bridge mode (fifo) | fifo/ | at your choice | no
+Bridge mode (routeur) | routeur/ | at your choice | no
+Bridge mode (routeur) | routeur/ | ~event/v1/data/new, ~event/v1/data/new/xxx | yes
 
 ### 1 Publish data ###
 Device mode ? Bridge mode ? How to choose:
@@ -151,40 +113,11 @@ Then just create two routings keys in Live Objects for your two fifos :
     * prodFifo : <b>~event.v1.data.new.myprod</b>
     * devFifo : <b>~event.v1.data.new.mydev</b>
 
-<table>
-<tr>
-    <td>Device kind</td>
-    <td>Topic to publish</td>
-    <td>Fifo</td>
-    <td>&nbsp;</td>
-</tr>
-<tr>
-    <td>production</td>
-    <td>/dev/data/myprod</td>
-    <td>prodFifo</td>
-    <td>~event.v1.data.new.myprod</td>
-</tr>
-<tr>
-    <td>development</td>
-    <td>/dev/data/mydev</td>
-    <td>devFifo</td>
-    <td>~event.v1.data.new.mydev</td>
-</tr>    
+Device kind | Topic to publish | Fifo | &nbsp;
+------------ | ------------ | ------------ | ------------
+production | /dev/data/myprod | prodFifo | ~event.v1.data.new.myprod
+development | /dev/data/mydev | devFifo | ~event.v1.data.new.mydev
 
-</table>
-
-Device kind
-Topic to publish
-Fifo
-
-production
-/dev/data/myprod
-prodFifo
-~event.v1.data.new.myprod
-development
-/dev/data/mydev
-devFifo
-~event.v1.data.new.mydev
 
 ## 3.2 Lora devices ##
 Data sent by Lora devices are automatically available in Live Objects data zone. You only have to decide of the way to consume them.
