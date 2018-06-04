@@ -195,7 +195,7 @@ Once defined the required parameters (remember upper in the document), the way t
 <u>Create your client</u>
 
 ```ruby
-MqttClient sampleClient = new MqttClient(<b>SERVER, CLIENT_ID</b>, new MemoryPersistence());
+MqttClient sampleClient = new MqttClient(SERVER, CLIENT_ID, new MemoryPersistence());
 ```
 
 <u>Create and fill options</u>
@@ -203,8 +203,8 @@ MqttClient sampleClient = new MqttClient(<b>SERVER, CLIENT_ID</b>, new MemoryPer
 ```ruby
 qttConnectOptions connOpts = new MqttConnectOptions();
 connOpts.setCleanSession(true);
-connOpts.setPassword(<b>API_KEY</b>.toCharArray());    
-connOpts.setUserName(<b>USERNAME</b>);  // use Device Mode
+connOpts.setPassword(API_KEY.toCharArray());    
+connOpts.setUserName(USERNAME);  // use Device Mode
 ```
 
 <u>Connect to Live Objects</u>
@@ -225,7 +225,7 @@ LoData loData = new LoData();
 ```ruby
 MqttMessage message = new MqttMessage(msg.getBytes());
 message.setQos(qos);
-sampleClient.publish(<b>TOPIC</b>, message);
+sampleClient.publish(TOPIC, message);
 ```
 
 <u>Disconnect</u>
@@ -243,7 +243,7 @@ The main difference with publishing is : you have to create a callback class ded
 <u>Create your client</u>
 
 ```ruby
-MqttClient sampleCLient = new MqttClient(<b>SERVER</b>, <b>CLIENT_ID</b>, new MemoryPersistence());
+MqttClient sampleCLient = new MqttClient(SERVER, CLIENT_ID, new MemoryPersistence());
 ```
 
 <u>Register the callback class that will handle subscription and message processing</u>
@@ -257,8 +257,8 @@ sampleClient.setCallback(new SimpleMqttCallback(sampleClient); // SEE BELOW !!
 ```ruby
 MqttConnectOptions connOpts = new MqttConnectOptions();
 connOpts.setCleanSession(true);
-connOpts.setPassword(<b>API_KEY</b>.toCharArray());    
-connOpts.setUserName(<b>USERNAME</b>);  // use Bridge mode here to consume from fifo or router !
+connOpts.setPassword(API_KEY.toCharArray());    
+connOpts.setUserName(USERNAME);  // use Bridge mode here to consume from fifo or router !
 connOpts.setAutomaticReconnect(true);
 ```
 
@@ -304,7 +304,7 @@ Once your MqttClient is connected, you will subscribe here :
 
 ```ruby
 try {
-System.out.printf("Consuming from topic : ", <b>TOPIC</b>);
+System.out.printf("Consuming from topic : ", TOPIC);
     mqttClient.subscribe(<b>TOPIC</b>);
     System.out.println("... subscribed.");                              
 } catch (MqttException e) {
