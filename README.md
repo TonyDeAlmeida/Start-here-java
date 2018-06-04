@@ -110,8 +110,8 @@ Configure your production application to consume from prodFifo, while your devel
 Configure your devices so that devices in production mode and devices used for development will publish to different topics (let’s say for example /dev/data/myprod and /dev/data/mydev.
 Then just create two routings keys in Live Objects for your two fifos :
 
-    * prodFifo : <b>~event.v1.data.new.myprod</b>
-    * devFifo : <b>~event.v1.data.new.mydev</b>
+    * prodFifo : ~event.v1.data.new.myprod
+    * devFifo : ~event.v1.data.new.mydev
 
 Device kind | Topic to publish | Fifo | &nbsp;
 ------------ | ------------ | ------------ | ------------
@@ -178,33 +178,12 @@ All JSON structures defined by Live Objects are named the same way: they start w
 
 For each project listed below, you will find more information in the readme.md
 
-<table>
-    <tr>
-        <td>Mode</td>
-        <td>Project name</td>
-    </tr>
-        <tr>
-        <td>Device Mode</td>
-        <td><a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data%20management/Publish%20data%20in%20device%20mode">Publish data in device mode</a><br>
-        <a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Device management/MQTT devices/Commands">Commands</a><br>   
-        <a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Device management/MQTT devices/Configuration">Configuration</a><br>         
-        <a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Device management/MQTT devices/Publishing infos">Publishing info</a><br>          
-</td>
-    </tr>
-    <tr>
-        <td>Bridge Mode / pubSub
-        </td>
-        <td><a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data management/Publish-Consume data in PubSub mode">Publish-Consume data in PubSub mode</a></td>
-    </tr>
-    <tr>
-        <td>Bridge Mode / router</td>
-        <td><a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data management/Publish-consume data in router mode">Publish-consume data in router mode</a></td>
-    </tr>
-    <tr>
-        <td>Bridge Mode / fifo</td>
-        <td><a href="https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data management/Publish-consume data in FIFO mode">Publish-consume data in FIFO mode</a></td>
-    </tr>
-</table>
+Mode | Project name
+------------ | -------------
+Device Mode |  [Publish data in device mode] (https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data%20management/Publish%20data%20in%20device%20mode)  <br> [Commands] (https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Device management/MQTT devices/Commands)    <br>   [Configuration] (https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Device management/MQTT devices/Configuration)  <br> [Publishing info] (https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Device management/MQTT devices/Publishing infos) 
+Bridge Mode / pubSub | [Publish-Consume data in PubSub mode] (https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data management/Publish-Consume data in PubSub mode)
+Bridge Mode / router | [Publish-consume data in router mode] (https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data management/Publish-consume data in router mode)  |  
+Bridge Mode / fifo | [Publish-consume data in FIFO mode] (https://github.com/DatavenueLiveObjects/Start-here-java/tree/master/Data management/Publish-consume data in FIFO mode)
 
 
 ## 5.2 PUBLISHING DATA FROM LIVE OBJECTS IN JAVA ##
@@ -254,7 +233,6 @@ sampleClient.publish(<b>TOPIC</b>, message);
 ```ruby
 sampleClient.disconnect();
 ```
-
 
 ## 5.3 CONSUMING DATA FROM LIVE OBJECTS ##
 
