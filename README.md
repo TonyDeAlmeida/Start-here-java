@@ -305,7 +305,7 @@ Once your MqttClient is connected, you will subscribe here :
 ```ruby
 try {
 System.out.printf("Consuming from topic : ", TOPIC);
-    mqttClient.subscribe(<b>TOPIC</b>);
+    mqttClient.subscribe(TOPIC);
     System.out.println("... subscribed.");                              
 } catch (MqttException e) {
     System.out.println("Error during subscription");
