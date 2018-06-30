@@ -29,7 +29,7 @@ public class RouterConsumer {
 		public static String CLIENT_ID = "app:" + UUID.randomUUID().toString();		// in device mode : should be the syntax urn:lo:nsid:{namespace}:{id}
 		
 		//Publication parameters
-		public static String TOPIC="router/#";	// topic to subscribe to
+		public static String TOPIC="router/~event/v1/data/new/#";	// topic to subscribe to
 		public static int qos = 1;              // set the qos                                               
 		
 
