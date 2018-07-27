@@ -47,7 +47,7 @@ public class FifoPublisher {
 			
 			// now connect to LO
 			sampleClient.connect(connOpts);
-			System.out.println("Connected  in bridge Mode");
+			System.out.println("Connected in bridge Mode");
 			
 			// create message
 			SampleData myData = new SampleData();
