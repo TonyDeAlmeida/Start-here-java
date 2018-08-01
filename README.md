@@ -123,6 +123,8 @@ development | /dev/data/mydev | devFifo | ~event.v1.data.new.mydev
 Data sent by Lora devices are automatically available in Live Objects data zone. You only have to decide of the way to consume them.
 Best way to take benefit of the Fifo mode: create fifos in Live Objects UI, with a binding rule:
 
+    * ~event.v1.data.new.urn.lora.# : (deprecated and will be decommissioned in december 2018) all messages of all devices
+    * ~event.v1.data.new.{DevEUI}.# : (deprecated and will be decommissioned in december 2018) all messages of the device DevEUI
     * ~event.v1.data.new.typ.*.dev.*.con.lora.evt.*.grp.# : all messages of all devices
     * ~event.v1.data.new.typ.*.dev.{deviceId}.con.lora.evt.*.grp.# : all messages of the device, deviceId is the URN of the device: urn:lo:nsid:lora:{devEUI}
 
