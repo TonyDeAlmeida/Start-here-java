@@ -15,7 +15,7 @@ The project is a maven project. You are free to use any IDE of your choice to bu
 
 
 #Prepare to use the sample
-1. You will neead a Live Object account and retrieve : your tenantId and the apiKeyId of your master key. If you do not know them, see the comment at the beginning of the java class that explains how to retrieve them
+1. You will need a Live Object account and retrieve : your tenantId and the apiKeyId of your master key. If you do not know them, see the comment at the beginning of the java class that explains how to retrieve them
 
 
 ##Using the sample
