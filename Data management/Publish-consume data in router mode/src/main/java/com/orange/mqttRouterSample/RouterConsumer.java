@@ -26,10 +26,10 @@ public class RouterConsumer {
 		public static String SERVER    = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
 		public static String API_KEY   = "enter your api key here";                    // <-- REPLACE by YOUR API_KEY!	
 		public static String USERNAME  = "payload+bridge";			       // The option to publish/subscribe in bridge mode
-		public static String CLIENT_ID = "app:" + UUID.randomUUID().toString();		// in device mode : should be the syntax urn:lo:nsid:{namespace}:{id}
+		public static String CLIENT_ID = "app:" + UUID.randomUUID().toString();		// in device mode: should be the syntax urn:lo:nsid:{namespace}:{id}
 		
 		//Publication parameters
-		public static String TOPIC="router/~event/v1/data/new/#";	// topic to subscribe to
+		public static String TOPIC="router/~event/v1/data/new/typ/+/dev/+/con/+/evt/+/grp/#";	// topic to subscribe to
 		public static int qos = 1;              // set the qos                                               
 		
 
@@ -87,7 +87,7 @@ public class RouterConsumer {
 		}
 
 		/**
-		 * When connection is OK subscribe to the desired topic : here router/~event/v1/data/new
+		 * When connection is OK subscribe to the desired topic: here router/~event/v1/data/new/typ/+/dev/+/con/+/evt/+/grp
 		 */
 		public void connectComplete(boolean b, String s) {
 			System.out.println("Connection is established");

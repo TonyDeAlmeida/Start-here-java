@@ -32,7 +32,7 @@ public class RouterPublisher {
 	public static String CLIENT_ID = "myClientId";			      // in device mode : should be the syntax urn:lo:nsid:{namespace}:{id}
 	
 	//Publication parameters
-	public static String TOPIC="router/~event/v1/data/new";	// topic to publish to
+	public static String TOPIC="router/~event/v1/data/new/typ/+/dev/+/con/+/evt/+/grp";	// topic to publish to
 	public static int qos = 1;                              // set the qos 
 	
 	public static void main(String[] args) {

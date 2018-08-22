@@ -16,6 +16,6 @@ The project is a maven project. You are free to use any IDE of your choice to bu
 
 #Using the sample
 
-1. Create a device named device1 in Live Objects or use  the auto provisionning capabilities of live objects
+1. Create a device named device1 in Live Objects or use the auto provisioning capabilities of live objects
 2. Set The API_KEY and run the sample
-3. Check the result in Live Objects (your data should be visible in the "data zone"
+3. Check the result in Live Objects (your data should be visible in the "data zone")
