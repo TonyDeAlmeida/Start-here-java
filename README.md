@@ -118,6 +118,7 @@ Device kind | Topic to publish | Fifo | &nbsp;
 production | /dev/data/myprod | prodFifo | ~event.v1.data.new.typ.*.dev.*.con.*.evt.*.grp.myprod
 development | /dev/data/mydev | devFifo | ~event.v1.data.new.typ.*.dev.*.con.*.evt.*.grp.mydev
 
+**Important** **:** New topic format will be available the 2nd of October 2018 for all customers. The deprecated topic will be decommissioned in december 2018. Please use the new topic to receive data messages. Please avoid the use of topic event.v1.data.new.#
 
 ## 3.2 Lora devices ##
 Data sent by Lora devices are automatically available in Live Objects data zone. You only have to decide of the way to consume them.
