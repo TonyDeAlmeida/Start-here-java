@@ -87,6 +87,7 @@ public class RouterConsumer {
 		}
 
 		/**
+ feature/newLoraTopic
 		 * When connection is OK subscribe to the desired topic: here router/~event/v1/data/new/typ/+/dev/+/con/+/evt/+/grp
 		 */
 		public void connectComplete(boolean b, String s) {

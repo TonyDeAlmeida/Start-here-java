@@ -83,7 +83,9 @@ Device Mode | dev/ | fixed: data, cfg, ... | yes for dev/data , yes for dev/data
 Bridge mode (pubsub) | pubsub/ | - | no
 Bridge mode (fifo) | fifo/ | at your choice | no
 Bridge mode (router) | router/ | at your choice | no
+ feature/newLoraTopic
 Bridge mode (router) | router/ | ~event/v1/data/new/typ/+/dev/+/con/+/evt/+/grp, ~event/v1/data/new/typ/+/dev/+/con/+/evt/+/grp/xxx | yes
+ master
 
 ### 1 Publish data ###
 Device mode ? Bridge mode ? How to choose:
