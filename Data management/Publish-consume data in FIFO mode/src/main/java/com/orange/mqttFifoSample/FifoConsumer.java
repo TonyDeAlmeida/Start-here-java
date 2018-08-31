@@ -31,7 +31,7 @@ public class FifoConsumer {
 		public static String SERVER    = "tcp://liveobjects.orange-business.com:1883"; // declare Live Objects end point
 		public static String API_KEY   = "enter your api key here";           // <-- REPLACE by YOUR API_KEY!	
 		public static String USERNAME  ="payload+bridge";							   // The option to publish in device mode
-		public static String CLIENT_ID ="app:" + UUID.randomUUID().toString();	       // in bridge mode : should be of your choice
+		public static String CLIENT_ID ="app:" + UUID.randomUUID().toString();	       // in bridge mode: should be of your choice
 		
 		//Publication parameters
 		public static String TOPIC ="fifo/sampleFifo";	// topic to publish to
@@ -99,7 +99,7 @@ public class FifoConsumer {
 		public void connectComplete(boolean b, String s) {
 			System.out.println("Connection is established");
 			try {
-				System.out.printf("Consuming from fifo : ", TOPIC);
+				System.out.printf("Consuming from fifo: ", TOPIC);
 				mqttClient.subscribe(TOPIC);
 				System.out.println("... subscribed.");
 			} catch (MqttException e) {
